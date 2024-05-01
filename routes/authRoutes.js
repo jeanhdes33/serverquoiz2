@@ -7,7 +7,7 @@ const { createQuestion, getQuestionsByCategoryAndSubCategory, getRandomFootballQ
 router.use(
     cors({
         credentials: true,
-        origin: 'http://localhost:3000'
+        origin: 'https://quoiz.onrender.com'
     })
 );
 
