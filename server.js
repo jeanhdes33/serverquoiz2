@@ -13,7 +13,14 @@ mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopol
 
 const corsOptions = {
   credentials: true,
-  origin: 'https://quoiz.onrender.com' // Autorise les requêtes depuis ce domaine
+  origin: (origin, callback) => {
+    // Vérifie si l'origine est autorisée
+    if (origin === 'https://quoiz.onrender.com' || origin === 'http://localhost:3000') {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
 };
 
 app.use(cors(corsOptions));
